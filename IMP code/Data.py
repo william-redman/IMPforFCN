@@ -60,25 +60,25 @@ class Data:
             x_train = x_train.transpose(0, 3, 1, 2)
             x_test = x_test.transpose(0, 3, 1, 2)
             
-            for ii in range(50000):
-                for jj in range(3):
-                    img = np.reshape(x_train[ii, jj, :, :], (32, 32))
-                    img_dft = np.fft.fft2(img)
-                    dft_shift = np.fft.fftshift(img_dft)
-                    dft_shift=lowPassFiltering(dft_shift, 10)
-                    idft_shift = np.fft.ifftshift(dft_shift)  #Move the frequency domain from the middle to the upper left corner
-                    ifimg = np.fft.ifft2(idft_shift) 
-                    ifimg = np.abs(ifimg)
-                    x_train[ii, jj,  :] = ifimg
-            for ii in range(10000):
-                for jj in range(3):
-                    img = np.reshape(x_test[ii, jj, :, :], (32, 32))
-                    img_dft = np.fft.fft2(img)
-                    dft_shift = np.fft.fftshift(img_dft)
-                    dft_shift=lowPassFiltering(dft_shift, 10)
-                    idft_shift = np.fft.ifftshift(dft_shift)  #Move the frequency domain from the middle to the upper left corner
-                    ifimg = np.fft.ifft2(idft_shift) 
-                    x_test[ii, jj, :, :] = ifimg        
+#            for ii in range(50000):
+#                for jj in range(3):
+#                    img = np.reshape(x_train[ii, jj, :, :], (32, 32))
+#                    img_dft = np.fft.fft2(img)
+#                    dft_shift = np.fft.fftshift(img_dft)
+#                    dft_shift=lowPassFiltering(dft_shift, 10)
+#                    idft_shift = np.fft.ifftshift(dft_shift)  #Move the frequency domain from the middle to the upper left corner
+#                    ifimg = np.fft.ifft2(idft_shift) 
+#                    ifimg = np.abs(ifimg)
+#                    x_train[ii, jj,  :] = ifimg
+#            for ii in range(10000):
+#                for jj in range(3):
+#                    img = np.reshape(x_test[ii, jj, :, :], (32, 32))
+#                    img_dft = np.fft.fft2(img)
+#                    dft_shift = np.fft.fftshift(img_dft)
+#                    dft_shift=lowPassFiltering(dft_shift, 10)
+#                    idft_shift = np.fft.ifftshift(dft_shift)  #Move the frequency domain from the middle to the upper left corner
+#                    ifimg = np.fft.ifft2(idft_shift) 
+#                    x_test[ii, jj, :, :] = ifimg        
             self.t_lab = y_train[:, 0]
             self.t_in = x_train
             self.e_lab = y_test[:, 0]
